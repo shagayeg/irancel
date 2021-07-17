@@ -36,6 +36,13 @@ class _MyHomePageState extends State<MyHomePage>
     return new Scaffold(
         backgroundColor: Colors.grey[200],
         appBar: new AppBar(
+          leading: IconButton(
+            icon: Icon(
+              Icons.notification_important,
+              color: Colors.orange[400],
+            ),
+            onPressed: () {},
+          ),
           backgroundColor: Colors.black87,
           title: Container(
             width: MediaQuery.of(context).size.width,
@@ -49,11 +56,42 @@ class _MyHomePageState extends State<MyHomePage>
             ),
           ),
         ),
-        drawer: Drawer(
+        endDrawer: Drawer(
           child: ListView(
-            // reverse: false,
             children: [
-              ListTile(),
+              Container(
+                child: new DrawerHeader(
+                    child: new CircleAvatar(
+                  child: Text("sh"),
+                  backgroundColor: Colors.red,
+                )),
+                color: Colors.orange[300],
+              ),
+              ListTile(
+                title: Text('oooo'),
+                leading: Icon(Icons.person),
+                onTap: () {},
+              ),
+              ListTile(
+                title: Text('oooo'),
+                leading: Icon(Icons.person),
+                onTap: () {},
+              ),
+              ListTile(
+                title: Text('oooo'),
+                leading: Icon(Icons.person),
+                onTap: () {},
+              ),
+              ListTile(
+                title: Text('oooo'),
+                leading: Icon(Icons.person),
+                onTap: () {},
+              ),
+              ListTile(
+                title: Text('oooo'),
+                leading: Icon(Icons.person),
+                onTap: () {},
+              ),
             ],
           ),
         ),
@@ -88,6 +126,7 @@ class _MyHomePageState extends State<MyHomePage>
                       SizedBox(
                         height: 5,
                       ),
+                      // SnackBarCustom(),
                       Container(
                         margin: EdgeInsets.symmetric(horizontal: 20),
                         height: 1,
@@ -188,25 +227,21 @@ class _MyHomePageState extends State<MyHomePage>
                             style: TextStyle(color: Colors.white),
                           ),
                         ),
-                        RaisedButton(
-                          color: Colors.orange[400],
-                          onPressed: () {},
-                          child: Text(
-                            'خرید بسته اینترنت',
-                            style: const TextStyle(color: Colors.black87),
-                          ),
-                        ),
+                        SnackBarCustom()
+                        // RaisedButton(
+                        //   color: Colors.orange[400],
+                        //   onPressed: () {},
+                        //   child: Text(
+                        //     'خرید بسته اینترنت',
+                        //     style: TextStyle(color: Colors.black87),
+                        //   ),
+                        // ),
                       ],
                     )
                   ],
                 )),
                 Card(
-                  child: ListTile(
-                    leading: const Icon(Icons.location_on),
-                    title: Text('Latitude: 48.09342\nLongitude: 11.23403'),
-                    trailing: IconButton(
-                        icon: const Icon(Icons.my_location), onPressed: () {}),
-                  ),
+                 
                 ),
               ],
             ),
@@ -412,8 +447,7 @@ class _MyHomePageState extends State<MyHomePage>
                         ],
                       )),
                     ),
-                     
-                     GridTile(
+                    GridTile(
                       child: Card(
                           child: Stack(
                         children: [
@@ -434,7 +468,6 @@ class _MyHomePageState extends State<MyHomePage>
                         ],
                       )),
                     ),
-                     
                     GridTile(
                       child: Card(
                           child: Stack(
@@ -444,8 +477,11 @@ class _MyHomePageState extends State<MyHomePage>
                               height: MediaQuery.of(context).size.height * 0.08,
                               // width: 40,
                               // color: Colors.red,
-                              child: Text("...",style: TextStyle(fontSize: 40,fontWeight: FontWeight.w800),)
-                                  ),
+                              child: Text(
+                                "...",
+                                style: TextStyle(
+                                    fontSize: 40, fontWeight: FontWeight.w800),
+                              )),
                           Positioned(
                               top: 88,
                               left: 30,
@@ -477,7 +513,7 @@ class _MyHomePageState extends State<MyHomePage>
                         ],
                       )),
                     ),
-                     GridTile(
+                    GridTile(
                       child: Card(
                           child: Stack(
                         children: [
@@ -498,8 +534,48 @@ class _MyHomePageState extends State<MyHomePage>
                         ],
                       )),
                     ),
-                  ]))
+                  ])),
+          Container(
+            height: MediaQuery.of(context).size.height * 0.20,
+            width: MediaQuery.of(context).size.width * 0.97,
+            decoration: BoxDecoration(
+              border: Border.all(width: 2, color: Colors.grey[300]),
+              borderRadius: BorderRadius.circular(5),
+              color: Colors.white,
+              // color: Colors.red,
+            ),
+            child: Image.network(
+              "https://saranmarket.com/blog/wp-content/uploads/2020/06/MyIrancell.jpg",
+              fit: BoxFit.fill,
+            ),
+          ),
+          // SnackBarCustom()
         ])));
+  }
+}
+
+class SnackBarCustom extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(children: [
+      RaisedButton(
+        color: Colors.orange[300],
+        onPressed: () {
+          SnackBar snackbar = SnackBar(
+            content: Text(
+              "موجودی کافی نیست",
+              style: TextStyle(color: Colors.black54, fontSize: 18),
+            ),
+            duration: Duration(seconds: 2),
+            backgroundColor: Colors.orange[300],
+            action: SnackBarAction(label: "undo", onPressed: () {}),
+          );
+
+          Scaffold.of(context).showSnackBar(snackbar);
+        },
+        child: Text("خرید بسته اینترنت"),
+      )
+    ]);
   }
 }
 
@@ -531,149 +607,3 @@ class Chevron extends CustomPainter {
   @override
   bool shouldRepaint(CustomPainter oldDelegate) => false;
 }
-// void main() {
-//   runApp(MyApp());
-// }
-
-// class MyApp extends StatelessWidget {
-//   // This widget is the root of your application.
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       debugShowCheckedModeBanner: false,
-//       title: 'Flutter Demo',
-//       theme: ThemeData(
-//         primarySwatch: Colors.yellow,
-
-//         visualDensity: VisualDensity.adaptivePlatformDensity,
-
-//       ),
-//       home: MyHomePage(title: 'Flutter Demo Home Page'),
-//     );
-//   }
-// }
-
-// class MyHomePage extends StatefulWidget {
-//   MyHomePage({Key key, this.title}) : super(key: key);
-//   final String title;
-
-//   @override
-//   _MyHomePageState createState() => _MyHomePageState();
-// }
-
-// class _MyHomePageState extends State<MyHomePage> {
-//   int _counter = 0;
-
-//   void _incrementCounter() {
-//     setState(() {
-//       _counter++;
-//     });
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//          actions: [
-//   IconButton(
-//             icon: Icon(Icons.notifications,size: 30,),
-//             onPressed: () {
-//               setState(() {});
-//              } ),
-//          ],
-
-//        centerTitle: false,
-//           title: Container(
-//             width: MediaQuery.of(context).size.width,
-//             child: Text(
-//               "حساب من",
-//               style: TextStyle(
-//                   // color: Colors.grey[700],
-//                   fontWeight: FontWeight.w700,
-//                   fontSize: 20),
-//               textAlign: TextAlign.end,
-//             ),
-//           ),
-//           // backgroundColor: Colors.white),
-//       ),
-//       drawer: Drawer(
-//         child: ListView(
-//           // reverse: false,
-//           children: [
-//             ListTile(
-
-//               ),
-
-//           ],
-//         ),
-//       ),
-//       //  bottomNavigationBar: BottomNavigationBar(
-//       //    fixedColor: Colors.yellow,
-//       //    backgroundColor: Colors.black87,
-
-//       //   items: [
-
-//       //     BottomNavigationBarItem(
-//       //       icon: new Icon(Icons.medical_services,color: Colors.yellow),
-//       //       title: new Text('دسته بندی '),
-//       //     ),
-//       //     BottomNavigationBarItem(
-//       //       icon: new Icon(Icons.menu_sharp,color: Colors.yellow),
-//       //       title: new Text('دسته بندی '),
-//       //     ),
-//       //     BottomNavigationBarItem(
-//       //         icon: Icon(Icons.person,color: Colors.yellow),
-//       //          title: Text('دیجی کالا من')
-//       //     )],
-//       // ),
-//       body: SingleChildScrollView(
-//         child: Column(children: [
-//           Container(
-
-//             height: MediaQuery.of(context).size.height*0.20,
-//             // width: MediaQuery.of(context).size.width*0.99,
-//             color: Colors.orange[300],
-//             child: Row(
-//               children: [
-//                  Container(
-//                    margin: EdgeInsets.only(left: 10),
-//                   height: MediaQuery.of(context).size.height*0.14,
-//             width: MediaQuery.of(context).size.width*0.70,
-
-//             // color: Colors.teal,
-//             child: Column(
-//               crossAxisAlignment: CrossAxisAlignment.end,
-//               children: [
-//               Text("شقایق حیدرزاده",style: TextStyle(fontWeight: FontWeight.w800),),
-//               SizedBox(height: 5,),
-//               Text("09387265013",style: TextStyle(color: Colors.white),),
-//                SizedBox(height: 5,),
-//               Container(
-//                 margin: EdgeInsets.symmetric(horizontal: 20),
-//                 height: 1,width: MediaQuery.of(context).size.width*0.90,
-//               color: Colors.black12,),
-//               Text("موجودی",style: TextStyle(fontWeight: FontWeight.w800),),
-//                SizedBox(height: 5,),
-//               Text("0",style: TextStyle(color: Colors.white),)
-//             ],),
-//                 ),
-//                 Spacer(),
-//                 Container(
-//                   // child: Icon(Icons.account_circle,size: 105,),
-//                 margin: EdgeInsets.only(right:5),
-//                  decoration: BoxDecoration(
-//                         shape: BoxShape.circle, color: Colors.red),
-//                 // borderRadius: BorderRadius.circular(80.0),
-//                 height: MediaQuery.of(context).size.height*0.50,
-//                 width: 100,
-//                 ),
-
-//               ],
-//             ),
-//           ),
-//         ],),
-//       ),
-//       );
-
-//   }
-// }
