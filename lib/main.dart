@@ -170,21 +170,21 @@ class _MyHomePageState extends State<MyHomePage>
               tabs: [
                 Tab(
                   icon: const Icon(
-                    Icons.person,
+                    Icons.data_usage_outlined,
                     color: Colors.black87,
                   ),
                   child: Text(
-                    "حساب",
+                    "بسته های اینترنتی",
                     style: TextStyle(color: Colors.black87),
                   ),
                 ),
                 Tab(
                   icon: const Icon(
-                    Icons.home,
+                    Icons.email,
                     color: Colors.black87,
                   ),
                   child: Text(
-                    "خانه",
+                    "بسته های پیامکی",
                     style: TextStyle(color: Colors.black87),
                   ),
                 ),
@@ -241,7 +241,21 @@ class _MyHomePageState extends State<MyHomePage>
                   ],
                 )),
                 Card(
-                 
+                  child: Column(
+                    children: [
+                      Text(
+                        "در حال حاضر بسته پیامک فعالی ندارید",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w700, fontSize: 16),
+                      ),
+                      SizedBox(height: 50,),
+                      RaisedButton(onPressed: (){},
+                      color:Colors.orange[300] ,
+                      child: Text("خرید بسته های پیامک",style: TextStyle(
+                            fontWeight: FontWeight.w700, fontSize: 16),),
+                      )
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -549,7 +563,35 @@ class _MyHomePageState extends State<MyHomePage>
               fit: BoxFit.fill,
             ),
           ),
-          // SnackBarCustom()
+          Container(
+            height: MediaQuery.of(context).size.height * 0.20,
+            width: MediaQuery.of(context).size.width * 0.97,
+            decoration: BoxDecoration(
+              border: Border.all(width: 2, color: Colors.grey[300]),
+              borderRadius: BorderRadius.circular(5),
+              color: Colors.white,
+            ),
+            child: ListView.builder(
+              reverse: true,
+              scrollDirection: Axis.horizontal,
+              itemCount: 3,
+              itemBuilder: (context, index) {
+                return Container(
+                    height: MediaQuery.of(context).size.height * 0.20,
+                    width: MediaQuery.of(context).size.width * 0.99,
+                    child: Card(
+                        clipBehavior: Clip.antiAliasWithSaveLayer,
+                        child: Image.network(
+                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIUPFK-aNX7UzqFYi1tcZsmmrUlhlT3hDr-Q&usqp=CAU",
+                          fit: BoxFit.fill,
+                        ),
+                        semanticContainer: true,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                        )));
+              },
+            ),
+          ),
         ])));
   }
 }
